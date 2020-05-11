@@ -1,33 +1,42 @@
 <template>
-<div>
-<h1>Full-Stack</h1>
-    <span>Wochentag</span>
-  <select name="Wochentag" id="selectBox">
-          <option>Montag</option>
-          <option>Dienstag</option>
-          <option>Mittwoch</option>
-          <option>Donnerstag</option>
-          <option>Freitag</option>
-        </select>
-    
-        <br>
-    
-        <table>
-          <tr>Snack</tr>
-          <tr>Tagessuppe</tr>
-          <tr>Hauptgericht</tr>
-          <tr>Dessert</tr>
-        </table>
-        </div>
+  <div>
+    {{loadedData}}
+    <dropdown></dropdown>
+
+    <br>
+    <list></list>
+
+  </div>
 </template>
 
 <script>
-export default {
-  name: 'Plan',
-  props: {
-    msg: String
+  import dropdown from "../components/dropdownvue.vue"
+  import list from "../components/list.vue"
+  import axios from "axios"
+
+  export default {
+    name: 'Plan',
+    components: {
+      dropdown, list
+    },
+    props: {
+      msg: String
+    },
+    data: function(){
+      return {
+        loadedData: "",
+      }
+    },
+    mounted () {
+      axios.get("http://localhost:3000/api/getData")
+      .then(response => {
+        this.loadedData = response
+      })
+      .catch(err => {
+        console.log(err)
+      })
+    }
   }
-}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
