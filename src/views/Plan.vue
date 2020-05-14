@@ -31,6 +31,8 @@
       axios.get("http://localhost:3000/api/getData")
       .then(response => {
         this.loadedData = response
+        this.dropdownData = this.loadedData.map((essen) => essen.day);
+        this.dropdownData = this.dropdownData.filter((a, b) => this.dropdownData.indexOf(a) === b)
       })
       .catch(err => {
         console.log(err)
