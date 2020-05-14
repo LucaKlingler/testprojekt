@@ -3,19 +3,16 @@
     <h1>Willkommen</h1>
     <span>Wochentag</span>
     <select name="Wochentag" id="selectBox">
-      <option>Montag</option>
-      <option>Dienstag</option>
-      <option>Mittwoch</option>
-      <option>Donnerstag</option>
-      <option>Freitag</option>
+      <option v-for= "day in dropdownFacts" :key="day">{{day}}</option>
     </select>
+    {{dropdownFacts}}
   </div>
 </template>
 <script>
   export default {
     name: 'dropdown',
     props: {
-      data: String
+      dropdownFacts: Object
     }
   }
 </script>

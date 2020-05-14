@@ -1,10 +1,9 @@
 <template>
   <div>
-    {{loadedData}}
-    <dropdown></dropdown>
+    <dropdown :dropdownFacts="days"></dropdown>
 
     <br>
-    <list></list>
+    <list :listFacts="loadedData.data"></list>
 
   </div>
 </template>
@@ -25,6 +24,7 @@
     data: function(){
       return {
         loadedData: "",
+        days: ["Mo", "Di", "Mi", "Do", "Fr"]
       }
     },
     mounted () {
